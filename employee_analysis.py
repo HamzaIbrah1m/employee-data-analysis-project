@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Define the path to the Excel file
-excel_file_path = 'Employee Sample Data - A.xlsx' # Changed to .xlsx
+excel_file_path = 'Employee Sample Data - A.xlsx'
 excel_output_path = 'cleaned_employee_data.xlsx'
 
 print("--- Step 1: Data Exploration and Conversion to Pandas DataFrame ---")
@@ -9,10 +9,6 @@ try:
     # Load the Excel data into a Pandas DataFrame
     df = pd.read_excel(excel_file_path) # Changed to pd.read_excel
     print("DataFrame loaded successfully.")
-except FileNotFoundError:
-    print(f"Error: The file '{excel_file_path}' was not found.")
-    print("Please ensure the Excel file is in the same directory as the script.")
-    exit()
 
 print("\nInitial 5 rows of the DataFrame:")
 print(df.head())
@@ -77,14 +73,14 @@ print("\nFirst 5 rows after modification:")
 print(df.head())
 
 print("\n--- Step 4: Print the row with the largest salary ---")
-# Find the row with the largest 'Annual Salary'
+# Find the row with the largest Annual Salary
 # .idxmax() returns the index of the first occurrence of the maximum value
 row_largest_salary = df.loc[df['Annual Salary'].idxmax()]
 print("\nRow with the largest Annual Salary:")
 print(row_largest_salary)
 
 print("\n--- Step 5: Group by department, and get the average age as well as average salary ---")
-# Group by 'Department' and calculate the mean of 'Age' and 'Annual Salary'
+# Group by Department and calculate the mean of Age and Annual Salary
 department_avg = df.groupby('Department').agg(
     Average_Age=('Age', 'mean'),
     Average_Salary=('Annual Salary', 'mean')
@@ -94,7 +90,7 @@ print("\nAverage Age and Average Salary by Department:")
 print(department_avg)
 
 print("\n--- Step 6: Group by department+ethnicity, and find the maximum age, minimum age, and median salary ---")
-# Group by 'Department' and 'Ethnicity' and calculate max age, min age, and median salary
+# Group by Department and Ethnicity and calculate max age, min age, and median salary
 department_ethnicity_stats = df.groupby(['Department', 'Ethnicity']).agg(
     Max_Age=('Age', 'max'),
     Min_Age=('Age', 'min'),
